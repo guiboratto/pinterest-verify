@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OAuth Callback</title>
+</head>
+<body>
+  <h1>Pinterest Authorization Successful</h1>
+  <p>Your authorization code is below. Copy it and paste into your workflow tool.</p>
+  <p>For automated flows, the server-side webhook listener captures this code.</p>
+  <hr>
+  <p><strong>Authorization code:</strong></p>
+  <pre id="code" style="background:#f4f4f4;padding:12px;border:1px solid #ddd;word-break:break-all;">Loading...</pre>
+  <p><strong>State parameter (CSRF check):</strong></p>
+  <pre id="state" style="background:#f4f4f4;padding:12px;border:1px solid #ddd;word-break:break-all;">—</pre>
+  <hr>
+  <p><small>Static page hosted on GitHub Pages. No data is sent anywhere.</small></p>
+  <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get('code') || 'NO_CODE_PRESENT';
+      const state = params.get('state') || '—';
+      document.getElementById('code').textContent = code;
+      document.getElementById('state').textContent = state;
+      document.title = 'OAuth code: ' + code.slice(0, 16) + '...';
+    })();
+  </script>
+</body>
+</html>
